@@ -1,0 +1,14 @@
+{
+  "name": "gullet",
+  "main": "index.html",
+  "window": {
+    "toolbar": false,
+    "frame": false,
+    "show": false,
+    "width": 0,
+    "height": 0
+  },
+  "dependencies": {
+    "gulp": "~3.5.2"
+  }
+}
