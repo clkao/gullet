@@ -12,7 +12,7 @@ devDependencies:
   'gulp-util': '~2.2.14'
   'gulp-jade': '~0.4.2'
   'gulp-livescript': '~0.1.2'
-  'gulp-stylus': '~0.0.12'
+  'gulp-exec': '~1.0.4'
   'gulp': '~3.5.2'
   'nodewebkit': '~0.8.4'
 scripts:
