@@ -26,19 +26,14 @@ removeWatcher = (dir) ->
   folders-info[dir]child?kill!
   
 createWatcher = (target, dir) ->
-  console.log \1
   exec = require 'child_process' .execFile
-  console.log \2
   child = exec 'node_modules/.bin/gulp' <[--require LiveScript ]> ++ target, {cwd: dir}, (error, stdout, stderr) ->
     # XXX: some console feedback
     console.log 'stdout: ' + stdout
     #console.log 'stderr: ' + stderr
     console.log 'exec error: ' + error if error isnt null
-  console.log \3
   children.push child
-  console.log \4
   folders-info.{}[dir]child = child
-  console.log \5
 
 gui = require 'nw.gui'
 win = gui.Window.get!
@@ -83,7 +78,6 @@ function new-watched-folder(dir, {target,stopped}:entry)
       folder.icon = \img/watch.png
       @label = \Stop
       createWatcher target, dir
-    #console.log \TODOSTOP dir
 
   submenu.append <| target-item = new gui.MenuItem do
     label: "Target: #{target}"
