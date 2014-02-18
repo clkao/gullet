@@ -7,10 +7,12 @@ chooseFile = (name) ->
 
   chooser = document.querySelector name
   chooser.addEventListener 'change' ->
+    if !@value => return
     win.hide!
     watched-folders[@value] = target: 'watch'
     local-storage.set-item 'watched-folders' JSON.stringify watched-folders
     new-watched-folder @value, watched-folders[@value]
+    @value = ""
 
   chooser.click!
   win.focus!
@@ -62,7 +64,11 @@ function new-watched-folder(dir, {target,stopped}:entry)
   submenu.append <| new gui.MenuItem do
     label: 'Remove'
   .on \click ->
-    console.log \TODOREMOVE dir
+    delete watched-folders[dir]
+    local-storage.set-item 'watched-folders' JSON.stringify watched-folders
+    children.splice children.indexOf(child), 1
+    child?kill!
+    menu.remove folder
 
   return if stopped
 
