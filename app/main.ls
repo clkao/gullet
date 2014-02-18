@@ -40,7 +40,6 @@ menu.append <| new gui.MenuItem do
   process.exit(0);
 
 function new-watched-folder(dir, {target,stopped}:entry)
-  console.log "012345 ", dir
   require! path
   base = path.basename dir
   submenu = new gui.Menu
