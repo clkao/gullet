@@ -4,6 +4,7 @@ gutil = require 'gulp-util'
 gulp.task 'js:livescript' ->
   gulp.src 'app/**/*.ls'
     .pipe gulp-livescript({+bare}).on 'error', gutil.log
+    .on \error -> throw it
     .pipe gulp.dest './_public/'
 
 gulp.task 'html:jade' ->
