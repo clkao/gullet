@@ -20,12 +20,12 @@ chooseFile = (name) ->
   chooser.click!
   win.focus!
 
-removeWatcher = (dir) ->
+remove-watcher = (dir) ->
   child = folders-info[dir]
   children.splice children.indexOf(child), 1
   folders-info[dir]child?kill!
   
-createWatcher = (target, dir) ->
+create-watcher = (target, dir) ->
   exec = require 'child_process' .execFile
   child = exec 'node_modules/.bin/gulp' <[--require LiveScript ]> ++ target, {cwd: dir}, (error, stdout, stderr) ->
     # XXX: some console feedback
@@ -73,11 +73,11 @@ function new-watched-folder(dir, {target,stopped}:entry)
     if @label == \Stop =>
       folder.icon = \img/stop.png
       @label = \Start
-      removeWatcher dir
+      remove-watcher dir
     else => # == \Start
       folder.icon = \img/watch.png
       @label = \Stop
-      createWatcher target, dir
+      create-watcher target, dir
 
   submenu.append <| target-item = new gui.MenuItem do
     label: "Target: #{target}"
@@ -92,13 +92,13 @@ function new-watched-folder(dir, {target,stopped}:entry)
   .on \click ->
     delete watched-folders[dir]
     local-storage.set-item 'watched-folders' JSON.stringify watched-folders
-    removeWatcher dir
+    remove-watcher dir
     menu.remove folder
 
   return if stopped
 
   folder.icon = \img/watch.png
-  createWatcher target, dir
+  create-watcher target, dir
 
 for dir, entry of watched-folders
   new-watched-folder dir, entry
