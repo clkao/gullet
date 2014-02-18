@@ -62,7 +62,9 @@ function new-watched-folder(dir, {target,stopped}:entry)
   submenu.append <| new gui.MenuItem do
     label: 'Remove'
   .on \click ->
-    console.log \TODOREMOVE dir
+    delete watched-folders[dir]
+    local-storage.set-item 'watched-folders' JSON.stringify watched-folders
+    menu.remove folder
 
   return if stopped
 
