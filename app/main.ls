@@ -7,10 +7,12 @@ chooseFile = (name) ->
 
   chooser = document.querySelector name
   chooser.addEventListener 'change' ->
+    if !@value => return
     win.hide!
     watched-folders[@value] = target: 'watch'
     local-storage.set-item 'watched-folders' JSON.stringify watched-folders
     new-watched-folder @value, watched-folders[@value]
+    @value = ""
 
   chooser.click!
   win.focus!
@@ -38,6 +40,7 @@ menu.append <| new gui.MenuItem do
   process.exit(0);
 
 function new-watched-folder(dir, {target,stopped}:entry)
+  console.log "012345 ", dir
   require! path
   base = path.basename dir
   submenu = new gui.Menu
@@ -64,6 +67,8 @@ function new-watched-folder(dir, {target,stopped}:entry)
   .on \click ->
     delete watched-folders[dir]
     local-storage.set-item 'watched-folders' JSON.stringify watched-folders
+    children.splice children.indexOf(child), 1
+    child?kill!
     menu.remove folder
 
   return if stopped
