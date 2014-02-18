@@ -24,6 +24,7 @@ remove-watcher = (dir) ->
   child = folders-info[dir]
   children.splice children.indexOf(child), 1
   folders-info[dir]child?kill!
+  # XXX: cb to call on child exit
   
 create-watcher = (target, dir) ->
   exec = require 'child_process' .execFile
@@ -85,6 +86,9 @@ function new-watched-folder(dir, {target,stopped}:entry)
     watched-folders[dir].target = target = window.prompt "Build Target for #base", target
     local-storage.set-item 'watched-folders' JSON.stringify watched-folders
     target-item.label = "Target: #{target}"
+    remove-watcher dir
+    create-watcher target, dir
+
 
   submenu.append new gui.MenuItem type: 'separator'
   submenu.append <| new gui.MenuItem do
