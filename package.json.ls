@@ -14,6 +14,9 @@ devDependencies:
   'gulp-livescript': '~0.1.2'
   'gulp-exec': '~1.0.4'
   'gulp': '~3.5.2'
+  "grunt": "~0.4.2"
+  "grunt-node-webkit-builder": "~0.1.17"
+  "gulp-grunt": "~0.4.1"
   'nodewebkit': '~0.8.4'
 scripts:
   build: 'gulp --require LiveScript'

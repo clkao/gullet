@@ -8,7 +8,10 @@
     "url": "https://github.com/clkao/gullet"
   },
   "dependencies": {
-    "LiveScript": "1.2.x"
+    "LiveScript": "1.2.x",
+    "grunt": "~0.4.2",
+    "grunt-node-webkit-builder": "~0.1.17",
+    "gulp-grunt": "~0.4.1"
   },
   "devDependencies": {
     "gulp-util": "~2.2.14",

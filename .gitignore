@@ -9,6 +9,7 @@ build.xml
 app/assets/*html
 
 _public
+dist
 node_modules/*
 bower_components/*
 npm-debug.log

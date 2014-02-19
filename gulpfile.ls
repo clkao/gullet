@@ -1,4 +1,6 @@
 require! <[gulp gulp-livescript gulp-jade gulp-exec]>
+require('gulp-grunt') gulp
+
 gutil = require 'gulp-util'
 
 gulp.task 'js:livescript' ->
