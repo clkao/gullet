@@ -27,14 +27,17 @@ remove-watcher = (dir) ->
   # XXX: cb to call on child exit
   
 create-watcher = (target, dir) ->
-  exec = require 'child_process' .execFile
-  child = exec 'node_modules/.bin/gulp' <[--require LiveScript ]> ++ target, {cwd: dir}, (error, stdout, stderr) ->
-    # XXX: some console feedback
-    console.log 'stdout: ' + stdout
-    #console.log 'stderr: ' + stderr
-    console.log 'exec error: ' + error if error isnt null
-  children.push child
-  folders-info.{}[dir]child = child
+  console.log "create #dir"
+  spawn = require 'child_process' .spawn
+  child = spawn 'node' ['./rungulp.js'] {stdio: ['ipc']}
+  child.on \error ->
+    console.log 'error' + it
+  child.on \message ->
+    console.log "[#dir] message " it
+  child.on \exit ->
+    console.log "[#dir] exit #it"
+  child.send {target, dir}
+  folders-info[dir] = {child}
 
 gui = require 'nw.gui'
 win = gui.Window.get!

@@ -10,6 +10,10 @@
     "height": 0
   },
   "dependencies": {
-    "gulp": "~3.5.2"
+    "gulp": "~3.5.2",
+    "pretty-hrtime": "~0.2.0",
+    "semver": "~2.2.1",
+    "liftoff": "~0.8.4",
+    "gulp-util": "~2.2.14"
   }
 }
