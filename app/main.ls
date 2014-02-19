@@ -38,6 +38,7 @@ create-watcher = (target, dir) ->
 
 gui = require 'nw.gui'
 win = gui.Window.get!
+win.setShowInTaskbar? false
 
 tray = new gui.Tray do
   title: ''
