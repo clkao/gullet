@@ -36,6 +36,8 @@ create-watcher = (target, dir) ->
     console.log "[#dir] message " it
   child.on \exit ->
     console.log "[#dir] exit #it"
+  child.stdout.on \data ->
+    console.log "[#dir] out #it"
   child.send {target, dir}
   folders-info[dir] = {child}
 
