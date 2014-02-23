@@ -11,7 +11,8 @@
     "LiveScript": "1.2.x",
     "grunt": "~0.4.2",
     "grunt-node-webkit-builder": "~0.1.17",
-    "gulp-grunt": "~0.4.1"
+    "gulp-grunt": "~0.4.1",
+    "glob-watcher": "0.0.3"
   },
   "devDependencies": {
     "gulp-util": "~2.2.14",

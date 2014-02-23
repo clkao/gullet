@@ -36,6 +36,10 @@ create-watcher = (target, dir) ->
     console.log "[#dir] message " it
   child.on \exit ->
     console.log "[#dir] exit #it"
+    if it is 0
+      process.nextTick ->
+        console.log "[#dir] auto reload config"
+        create-watcher(target, dir)
   child.stdout.on \data ->
     console.log "[#dir] out #it"
   child.send {target, dir}
