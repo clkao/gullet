@@ -1,4 +1,4 @@
-require! <[liftoff gulp fs]>
+require! <[liftoff gulp fs glob-watcher]>
 
 handleArguments = (args) ->
   argv = args.argv
@@ -25,6 +25,8 @@ handleArguments = (args) ->
   gulpFile = require args.configPath
   gutil.log 'Using gulpfile', gutil.colors.magenta args.configPath
   gulpInst = require args.modulePath
+  globWatcher args.configPath, ->
+    process.exit(0)
   logEvents gulpInst
   if process.cwd! isnt args.cwd
     process.chdir args.cwd
