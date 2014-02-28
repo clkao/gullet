@@ -4,6 +4,7 @@ grunt.loadNpmTasks('grunt-node-webkit-builder');
 grunt.initConfig({
   nodewebkit: {
     options: {
+        version: '0.9.2',
         build_dir: './dist', // Where the build version of my node-webkit app is saved
         mac: true, // We want to build it for mac
         win: true, // We want to build it for win
